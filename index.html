@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MailMind AI - Chrome Extension Landing Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #4A90E2 100%);
+      min-height: 100vh;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .hero {
+      background: white;
+      border-radius: 24px;
+      padding: 60px 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .logo svg {
+      width: 64px;
+      height: 64px;
+    }
+
+    .logo h1 {
+      font-size: 48px;
+      background: linear-gradient(135deg, #667eea 0%, #4A90E2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 24px;
+      color: #666;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+
+    .feature {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .feature p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .cta {
+      margin-top: 50px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #4A90E2 100%);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
+    }
+
+    .extension-preview {
+      margin: 50px 0;
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 40px;
+    }
+
+    .preview-image {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .installation-steps {
+      text-align: left;
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 16px;
+      margin-top: 40px;
+    }
+
+    .installation-steps h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .installation-steps ol {
+      margin-left: 20px;
+    }
+
+    .installation-steps li {
+      margin-bottom: 15px;
+      color: #666;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .installation-steps code {
+      background: #e0e0e0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+
+    .demo-section {
+      margin-top: 50px;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(74, 144, 226, 0.1) 100%);
+      border-radius: 16px;
+    }
+
+    .demo-section h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .demo-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .demo-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-card h3 {
+      color: #4A90E2;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .demo-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="badge">Chrome Extension</div>
+
+      <div class="logo">
+        <svg viewBox="0 0 64 64" fill="none">
+          <path d="M32 16L16 24L32 32L48 24L32 16Z" stroke="#4A90E2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 40L32 48L48 40" stroke="#4A90E2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 32L32 40L48 32" stroke="#4A90E2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="45" cy="21" r="4" fill="#FFD700"/>
+        </svg>
+        <h1>MailMind AI</h1>
+      </div>
+
+      <p class="subtitle">
+        Your intelligent email assistant that automatically detects meetings, deadlines, and events in Gmail and Outlook
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🤖</div>
+          <h3>AI-Powered Detection</h3>
+          <p>Automatically finds dates, times, and events in your emails using smart pattern recognition</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📅</div>
+          <h3>Calendar Integration</h3>
+          <p>One-click calendar event creation with Google Calendar sync</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <h3>Smart Suggestions</h3>
+          <p>Get intelligent suggestions for meetings, deadlines, and reminders</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <h3>Beautiful Design</h3>
+          <p>Modern, minimalist interface with smooth animations and intuitive controls</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>All processing happens locally in your browser. Your data stays private</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">⚙️</div>
+          <h3>Customizable</h3>
+          <p>Configure auto-sync, notifications, and auto-detection settings</p>
+        </div>
+      </div>
+
+      <div class="installation-steps">
+        <h2>📦 Installation Instructions</h2>
+        <ol>
+          <li>Download or clone the MailMind AI extension files</li>
+          <li>Open Chrome and navigate to <code>chrome://extensions/</code></li>
+          <li>Enable <strong>Developer mode</strong> in the top right corner</li>
+          <li>Click <strong>Load unpacked</strong> and select the extension directory</li>
+          <li>The MailMind AI icon will appear in your Chrome toolbar</li>
+          <li>Navigate to Gmail or Outlook and start using the extension!</li>
+        </ol>
+      </div>
+
+      <div class="demo-section">
+        <h2>✨ Features Overview</h2>
+
+        <div class="demo-images">
+          <div class="demo-card">
+            <h3>AI Suggestions Panel</h3>
+            <p>See intelligent suggestions for detected events with beautiful gradient cards and one-click actions</p>
+          </div>
+
+          <div class="demo-card">
+            <h3>Recent Emails</h3>
+            <p>Browse emails with detected dates and times, highlighted for easy identification</p>
+          </div>
+
+          <div class="demo-card">
+            <h3>Upcoming Events</h3>
+            <p>Preview your upcoming reminders and calendar events in a clean, organized view</p>
+          </div>
+
+          <div class="demo-card">
+            <h3>Smart Settings</h3>
+            <p>Configure auto-sync with Google Calendar, notifications, and auto-detection preferences</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a href="https://github.com" class="cta-button">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Built with ❤️ using Chrome Extension Manifest V3</p>
+      <p>© 2025 MailMind AI. MIT License.</p>
+    </div>
+  </div>
+
+  <script>
+    // Add smooth scroll animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const features = document.querySelectorAll('.feature');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeIn 0.6s ease forwards';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      features.forEach(feature => {
+        observer.observe(feature);
+      });
+    });
+  </script>
+</body>
+</html>
